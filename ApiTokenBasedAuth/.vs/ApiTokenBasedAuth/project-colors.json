@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "23172555-775b-4b5c-984c-d1b2a8acfb5b": {
+      "ProjectGuid": "23172555-775b-4b5c-984c-d1b2a8acfb5b",
+      "DisplayName": "ApiTokenBasedAuth",
+      "ColorIndex": 0
+    },
+    "ab8cf3eb-6481-455e-9186-a83744fc8791": {
+      "ProjectGuid": "ab8cf3eb-6481-455e-9186-a83744fc8791",
+      "DisplayName": "asd",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
