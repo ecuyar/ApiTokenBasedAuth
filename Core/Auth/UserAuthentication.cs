@@ -40,8 +40,8 @@ namespace Core.Auth
 
             //if exists you can check user password
             //we will generate token for user
-            var key = configuration["Jwt.Key"];
-            var issuer = configuration["Jwt.Issuer"];
+            var key = configuration["Jwt:Key"];
+            var issuer = configuration["Jwt:Issuer"];
 
             string token = TokenHandler.GenerateToken(key, issuer, user);
 

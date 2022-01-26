@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Core.Auth
 {
-    public class TokenHandler
+    public static class TokenHandler
     {
         //token expiry time
         private const double Jwt_Expiry = 2;
@@ -19,15 +19,15 @@ namespace Core.Auth
             var claims = new[]
             {
                 new Claim("Username", user.Username),
-                new Claim("UserId", user.Id.ToString()),
-
+                new Claim("Id", user.Id.ToString()),
+            
                 //random area for additional info
                 new Claim("Identifier", Guid.NewGuid().ToString())
             };
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var tokenDescriptor = new JwtSecurityToken(issuer, claims: claims, expires: DateTime.Now.AddMinutes(Jwt_Expiry), signingCredentials: credentials);
+            var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims, expires: DateTime.Now.AddMinutes(Jwt_Expiry), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
