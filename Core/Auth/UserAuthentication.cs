@@ -1,9 +1,7 @@
 ﻿using Entity;
-using System;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Auth
 {
@@ -30,7 +28,7 @@ namespace Core.Auth
             new User() { Id = 3, Username = "Marc", Password = "Marcmarc" }
         };
 
-        public static LogInResponse LogInResponse(LogInRequest request)
+        public static LogInResponse LogInResponse(LogInRequest request, IConfiguration configuration)
         {
             var user = users.Where(x => x.Username == request.Username).FirstOrDefault();
 
@@ -42,7 +40,20 @@ namespace Core.Auth
 
             //if exists you can check user password
             //we will generate token for user
+            var key = configuration["Jwt.Key"];
+            var issuer = configuration["Jwt.Issuer"];
 
+            string token = TokenHandler.GenerateToken(key, issuer, user);
+
+            //if token is not created correctly
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                return new LogInResponse { IsSuccess = false, ErrorCode = "TokenNotCreated" };
+            }
+            else
+            {
+                return new LogInResponse { IsSuccess = true, AccessToken = token };
+            }
         }
     }
 }
