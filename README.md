@@ -11,7 +11,7 @@ User must pass this token if he/she wants to use other API endpoints.
 Token has an expiry time.
 
 
-Predefined usernames and passwords
+Predefined usernames and passwords:
 ```
 Id = 1, Username = "Jan", Password = "Janjan"
 Id = 2, Username = "Feb", Password = "Febfeb"
